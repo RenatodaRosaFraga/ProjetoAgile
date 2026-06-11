@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Sleep -Seconds 30; Select-String -Path \"$env:TEMP\\\\taskagile-back.log\" -Pattern \"Started Taskagileback|Unknown data type|not found|APPLICATION FAILED|Tomcat started\" | ForEach-Object { $_.Line } | Select-Object -Last 10)"
+    ]
+  }
+}
