@@ -6,8 +6,8 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123456
-      - POSTGRES_DB=aulafull
+      - POSTGRES_PASSWORD=Sen@c2023
+      - POSTGRES_DB=taskagileback
     volumes:
       - postgres-data-local:/var/lib/postgresql/data
 
@@ -17,7 +17,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/taskagileback
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-db:5432/taskagileback
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=Sen@c2023
     depends_on:
