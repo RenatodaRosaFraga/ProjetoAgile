@@ -27,47 +27,20 @@ public class LoginController {
 
     @FXML
     private void onLoginButtonClick(ActionEvent event) throws IOException {
-        URL url = new URL("http://localhost:8080/auth/login");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-type", "application/json; charset=UTF-8");
-        conn.setDoOutput(true);
-
-        String json = "{\n" +
-                "  \"email\": \"" + txtLogin.getText() + "\",\n" +
-                "  \"senha\": \"" + txtSenha.getText() + "\"\n" +
-                "}";
-
-        try (OutputStream os = conn.getOutputStream()) {
-            os.write(json.getBytes(StandardCharsets.UTF_8));
-        }
-
-        int code = conn.getResponseCode();
-        if (code >= 200 && code < 300) {
-            String body;
-            try (InputStream is = conn.getInputStream()) {
-                body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-            }
-            SessionManager.setToken(extrairToken(body));
+        String login = txtLogin.getText();
+        String senha = txtSenha.getText();
+        
+        // Verificar credenciais admin
+        if ("admin".equals(login) && "12345".equals(senha)) {
             showMenssage("Login efetuado com sucesso!", Alert.AlertType.INFORMATION);
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("menu-view.fxml"));
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("bootstrap-view.fxml"));
             Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
         } else {
             showMenssage("Usuário e senha inválidos!", Alert.AlertType.ERROR);
         }
-
-        conn.disconnect();
-    }
-
-    @FXML
-    private void onBootstrapButtonClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("bootstrap-view.fxml"));
-        Scene scene = new Scene(loader.load());
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
     }
 
     private String extrairToken(String json) {

@@ -20,7 +20,7 @@
         <Label layoutX="64.0" layoutY="220.0" text="Senha" />
         <PasswordField fx:id="txtSenha" layoutX="151.0" layoutY="216.0" prefWidth="240.0" />
 
-        <Button layoutX="151.0" layoutY="275.0" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefWidth="240.0" text="Criar Bootstrap" />
+        <Button layoutX="151.0" layoutY="275.0" mnemonicParsing="false" onAction="#onSalvarButtonClick" prefWidth="240.0" text="Criar Workspace" />
         <Button layoutX="151.0" layoutY="320.0" mnemonicParsing="false" onAction="#onVoltarButtonClick" prefWidth="240.0" text="Voltar" />
     </children>
 </AnchorPane>

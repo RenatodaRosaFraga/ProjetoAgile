@@ -14,6 +14,5 @@
         <PasswordField fx:id="txtSenha" layoutX="151.0" layoutY="84.0" prefHeight="25.0" prefWidth="215.0" />
 
         <Button layoutX="151.0" layoutY="125.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="25.0" prefWidth="215.0" text="Login" />
-        <Button layoutX="151.0" layoutY="165.0" mnemonicParsing="false" onAction="#onBootstrapButtonClick" prefHeight="25.0" prefWidth="215.0" text="Criar Workspace" />
     </children>
 </AnchorPane>
