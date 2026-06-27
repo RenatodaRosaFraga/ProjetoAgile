@@ -63,7 +63,6 @@ public class ProjetoService {
             projeto.setStatus(EnumStatusProjeto.ATIVO);
             projeto.setEmpresa(usuarioLogado.getEmpresa());
 
-            // Busca endereço pelo CEP usando API ViaCEP
             if (projetoRequest.cep() != null && !projetoRequest.cep().isEmpty()) {
                 var endereco = viaCepService.buscarEnderecoPorCep(projetoRequest.cep());
                 projeto.setCep(endereco.cep());
@@ -89,7 +88,6 @@ public class ProjetoService {
             projetoBanco.setNome(projetoRequest.nome());
             projetoBanco.setPrazo(projetoRequest.prazo());
 
-            // Busca endereço pelo CEP usando API ViaCEP se o CEP foi alterado
             if (projetoRequest.cep() != null && !projetoRequest.cep().isEmpty()) {
                 var endereco = viaCepService.buscarEnderecoPorCep(projetoRequest.cep());
                 projetoBanco.setCep(endereco.cep());

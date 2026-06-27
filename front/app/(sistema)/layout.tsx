@@ -8,15 +8,22 @@ import { useEffect } from "react";
 import { useAppSelector } from "@/app/redux/hooks";
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
-  const { usuario, token } = useAppSelector((state) => state.auth);
+  const { usuario, token, isHydrated } = useAppSelector((state) => state.auth);
   const router = useRouter();
 
   useEffect(() => {
-    if (!usuario || !token) {
+    // Só redireciona após o hydrate terminar
+    if (isHydrated && (!usuario || !token)) {
       router.push('/login');
     }
-  }, [usuario, token, router]);
+  }, [usuario, token, isHydrated, router]);
 
+  // Enquanto não carregou os cookies, não renderiza nada
+  if (!isHydrated) {
+    return null;
+  }
+
+  // Se já carregou mas não tem usuário, também não renderiza (vai redirecionar)
   if (!usuario || !token) {
     return null;
   }

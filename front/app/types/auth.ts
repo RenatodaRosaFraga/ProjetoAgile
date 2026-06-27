@@ -6,6 +6,7 @@ export interface LoginResponse{
 }
 
 export interface AuthState {
-    usuario: Usuario | null; 
+    usuario: Usuario | null;
     token: string;
+    isHydrated: boolean;
 }

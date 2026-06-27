@@ -24,7 +24,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     (response) => response,
     (error) => {
+        console.log('[Interceptor] Erro capturado:', error?.response?.status);
         if (error?.response?.status === 401) {
+            console.log('[Interceptor] 401 detectado! Fazendo logout...');
             store.dispatch(logout());
         }
 
